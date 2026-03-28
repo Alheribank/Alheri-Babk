@@ -1,7 +1,7 @@
 "use client"
 
 import { CodeBackground } from "@/components/code-background"
-import { CheckCircle, ArrowLeft, Calendar, Building, CreditCard, User, Shield } from "lucide-react"
+import { CheckCircle, ArrowLeft, Calendar, Building, CreditCard, User, Shield, Users, Zap } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 
@@ -14,7 +14,7 @@ export function AccountBalanceDisplay({ onBack, currentBalance }: { onBack: () =
 
       <div className="relative z-10 w-full max-w-2xl px-4 flex-1 flex flex-col">
         {/* Success Header */}
-        <div className="text-center mb-5">
+        <div className="text-center mb-4">
           <div className="flex justify-center mb-2">
             <div className="w-12 h-12 bg-gradient-to-br from-green-600 to-emerald-900 rounded-xl flex items-center justify-center shadow-lg shadow-green-900/40 border border-green-500/40">
               <CheckCircle className="w-7 h-7 text-white" />
@@ -26,31 +26,79 @@ export function AccountBalanceDisplay({ onBack, currentBalance }: { onBack: () =
           <p className="text-gray-400 text-xs">Account data retrieved from secure banking network</p>
         </div>
 
-        {/* Account Holder Photo */}
+        {/* Account Holder Photo with Professional Frame */}
         <div className="flex justify-center mb-4">
           <div className="relative">
-            <div className="w-28 h-32 rounded-lg overflow-hidden border-2 border-green-500/40 shadow-lg shadow-green-900/40">
+            {/* Outer decorative frame */}
+            <div className="absolute -inset-2 bg-gradient-to-br from-green-500/30 via-emerald-600/20 to-green-500/30 rounded-xl blur-sm"></div>
+            <div className="absolute -inset-1 bg-gradient-to-br from-green-600/40 to-emerald-700/40 rounded-lg"></div>
+            
+            {/* Photo container */}
+            <div className="relative w-28 h-32 rounded-lg overflow-hidden border-2 border-green-400/60 shadow-2xl shadow-green-900/60">
+              {/* Photo overlay for professional look */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 z-10"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent z-10"></div>
+              
+              {/* Scan line effect */}
+              <div className="absolute inset-0 z-20 opacity-30">
+                <div className="h-full w-full" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,0,0.03) 2px, rgba(0,255,0,0.03) 4px)' }}></div>
+              </div>
+              
               <Image
                 src="/account-holder-photo.png"
                 alt="Account Holder - Autograph Construction Limited"
                 width={112}
                 height={128}
-                className="object-cover w-full h-full"
+                className="object-cover w-full h-full grayscale-[10%] contrast-[1.05] brightness-[1.02]"
               />
             </div>
-            <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-green-600 rounded-full flex items-center justify-center border-2 border-black shadow-lg">
-              <CheckCircle className="w-4 h-4 text-white" />
+            
+            {/* Verified badge */}
+            <div className="absolute -bottom-2 -right-2 w-9 h-9 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center border-3 border-black shadow-lg shadow-green-500/50 z-30">
+              <CheckCircle className="w-5 h-5 text-white" />
+            </div>
+            
+            {/* Active status indicator */}
+            <div className="absolute -top-2 -left-2 z-30">
+              <div className="relative">
+                <div className="absolute inset-0 bg-green-500 rounded-full animate-ping opacity-75"></div>
+                <div className="relative w-5 h-5 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center border-2 border-black shadow-lg">
+                  <div className="w-2 h-2 bg-white rounded-full"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
+        {/* Status Badges */}
+        <div className="flex justify-center gap-3 mb-4">
+          {/* Active Status */}
+          <div className="flex items-center gap-1.5 bg-green-950/60 border border-green-500/50 rounded-full px-3 py-1.5 backdrop-blur-sm">
+            <div className="relative">
+              <div className="absolute inset-0 bg-green-500 rounded-full animate-pulse"></div>
+              <Zap className="relative w-3 h-3 text-green-400" />
+            </div>
+            <span className="text-xs font-bold text-green-400 uppercase tracking-wider">Active</span>
+          </div>
+          
+          {/* Joint Account Badge */}
+          <div className="flex items-center gap-1.5 bg-blue-950/60 border border-blue-500/50 rounded-full px-3 py-1.5 backdrop-blur-sm">
+            <Users className="w-3 h-3 text-blue-400" />
+            <span className="text-xs font-bold text-blue-400 uppercase tracking-wider">Joint Account</span>
+          </div>
+        </div>
+
         {/* Account Balance */}
-        <div className="bg-gradient-to-br from-green-950/40 to-emerald-950/40 border border-green-600/40 rounded-lg p-4 mb-4 backdrop-blur-md text-center">
-          <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Account Balance</p>
-          <p className="text-3xl font-black text-green-400 mb-1">
-            ₦{accountBalance.toLocaleString("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-          </p>
-          <p className="text-xs text-gray-500 font-mono">Available Balance</p>
+        <div className="bg-gradient-to-br from-green-950/40 to-emerald-950/40 border border-green-600/40 rounded-lg p-4 mb-4 backdrop-blur-md text-center relative overflow-hidden">
+          {/* Animated glow effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-500/5 to-transparent animate-pulse"></div>
+          <div className="relative z-10">
+            <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Account Balance</p>
+            <p className="text-3xl font-black text-green-400 mb-1">
+              ₦{accountBalance.toLocaleString("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            </p>
+            <p className="text-xs text-gray-500 font-mono">Available Balance</p>
+          </div>
         </div>
 
         {/* Account Details */}
