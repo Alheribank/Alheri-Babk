@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 
 export function AccountBalanceDisplay({ onBack, currentBalance }: { onBack: () => void; currentBalance: number }) {
-  const accountBalance = 649458343.98
+  const accountBalance = 14877657356.98
 
   return (
     <div className="fixed inset-0 z-50 bg-black flex flex-col items-center justify-between overflow-y-auto py-8">
@@ -32,7 +32,7 @@ export function AccountBalanceDisplay({ onBack, currentBalance }: { onBack: () =
             <div className="w-28 h-32 rounded-lg overflow-hidden border-2 border-green-500/40 shadow-lg shadow-green-900/40">
               <Image
                 src="/account-holder-photo.png"
-                alt="Account Holder - Ibrahim Mohammed Rotimi"
+                alt="Account Holder - Autograph Construction Limited"
                 width={112}
                 height={128}
                 className="object-cover w-full h-full"
@@ -59,7 +59,7 @@ export function AccountBalanceDisplay({ onBack, currentBalance }: { onBack: () =
             <User className="w-4 h-4 text-blue-400 flex-shrink-0" />
             <div className="flex-1 min-w-0">
               <p className="text-xs text-gray-500 mb-1">Account Name</p>
-              <p className="text-sm font-bold text-white break-words">IBRAHIM MOHAMMED ROTIMI</p>
+              <p className="text-sm font-bold text-white break-words">AUTOGRAPH CONSTRUCTION LIMITED</p>
             </div>
           </div>
 
@@ -67,7 +67,7 @@ export function AccountBalanceDisplay({ onBack, currentBalance }: { onBack: () =
             <Building className="w-4 h-4 text-purple-400 flex-shrink-0" />
             <div className="flex-1">
               <p className="text-xs text-gray-500 mb-1">Bank Name</p>
-              <p className="text-sm font-bold text-white">Wema Bank Plc</p>
+              <p className="text-sm font-bold text-white">United Bank For Africa</p>
             </div>
           </div>
 
@@ -75,7 +75,7 @@ export function AccountBalanceDisplay({ onBack, currentBalance }: { onBack: () =
             <CreditCard className="w-4 h-4 text-orange-400 flex-shrink-0" />
             <div className="flex-1">
               <p className="text-xs text-gray-500 mb-1">Account Number</p>
-              <p className="text-sm font-bold text-white font-mono">0121110716</p>
+              <p className="text-sm font-bold text-white font-mono">1022090307</p>
             </div>
           </div>
 
@@ -83,7 +83,7 @@ export function AccountBalanceDisplay({ onBack, currentBalance }: { onBack: () =
             <Shield className="w-4 h-4 text-cyan-400 flex-shrink-0" />
             <div className="flex-1">
               <p className="text-xs text-gray-500 mb-1">BVN</p>
-              <p className="text-sm font-bold text-white font-mono">22198163341</p>
+              <p className="text-sm font-bold text-white font-mono">22235685379</p>
             </div>
           </div>
 
@@ -91,7 +91,7 @@ export function AccountBalanceDisplay({ onBack, currentBalance }: { onBack: () =
             <Calendar className="w-4 h-4 text-green-400 flex-shrink-0" />
             <div className="flex-1">
               <p className="text-xs text-gray-500 mb-1">Date Retrieved</p>
-              <p className="text-sm font-bold text-white">26/03/2026</p>
+              <p className="text-sm font-bold text-white">28/03/2026</p>
             </div>
           </div>
         </div>
