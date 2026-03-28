@@ -26,30 +26,21 @@ export function AccountBalanceDisplay({ onBack, currentBalance }: { onBack: () =
           <p className="text-gray-400 text-xs">Account data retrieved from secure banking network</p>
         </div>
 
-        {/* Account Holder Photo with Professional Frame */}
+        {/* UBA Bank Logo */}
         <div className="flex justify-center mb-4">
           <div className="relative">
             {/* Outer decorative frame */}
-            <div className="absolute -inset-2 bg-gradient-to-br from-green-500/30 via-emerald-600/20 to-green-500/30 rounded-xl blur-sm"></div>
-            <div className="absolute -inset-1 bg-gradient-to-br from-green-600/40 to-emerald-700/40 rounded-lg"></div>
+            <div className="absolute -inset-2 bg-gradient-to-br from-red-500/30 via-red-600/20 to-red-500/30 rounded-xl blur-sm"></div>
+            <div className="absolute -inset-1 bg-gradient-to-br from-red-600/40 to-red-700/40 rounded-lg"></div>
             
-            {/* Photo container */}
-            <div className="relative w-28 h-32 rounded-lg overflow-hidden border-2 border-green-400/60 shadow-2xl shadow-green-900/60">
-              {/* Photo overlay for professional look */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/20 z-10"></div>
-              <div className="absolute inset-0 bg-gradient-to-br from-green-500/10 to-transparent z-10"></div>
-              
-              {/* Scan line effect */}
-              <div className="absolute inset-0 z-20 opacity-30">
-                <div className="h-full w-full" style={{ backgroundImage: 'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,0,0.03) 2px, rgba(0,255,0,0.03) 4px)' }}></div>
-              </div>
-              
+            {/* Logo container */}
+            <div className="relative w-28 h-28 rounded-lg overflow-hidden border-2 border-red-400/60 shadow-2xl shadow-red-900/60 bg-white flex items-center justify-center">
               <Image
-                src="/account-holder-photo.png"
-                alt="Account Holder - Autograph Construction Limited"
-                width={112}
-                height={128}
-                className="object-cover w-full h-full grayscale-[10%] contrast-[1.05] brightness-[1.02]"
+                src="/uba-bank-logo.jpg"
+                alt="United Bank for Africa Logo"
+                width={100}
+                height={100}
+                className="object-contain p-2"
               />
             </div>
             
