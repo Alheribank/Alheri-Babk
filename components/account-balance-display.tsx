@@ -132,6 +132,10 @@ export function AccountBalanceDisplay({ onBack, currentBalance }: { onBack: () =
               <p className="text-xs text-gray-500 mb-1">Date Retrieved</p>
               <p className="text-sm font-bold text-white">29/03/2026</p>
             </div>
+            <div className="text-right">
+              <p className="text-xs text-gray-500 mb-1">Time</p>
+              <p className="text-sm font-bold text-white font-mono">12:06</p>
+            </div>
           </div>
         </div>
 
