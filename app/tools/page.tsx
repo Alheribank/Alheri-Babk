@@ -43,7 +43,7 @@ export default function ToolsPage() {
     {
       id: 1,
       name: "International Dark Software",
-      price: "$18,450",
+      price: "$1,658",
       originalPrice: "$6,299",
       description:
         "Dark International is the legendary primary cyber warfare platform developed by elite Russian Federal Security Service (FSB) hackers and deployed by sophisticated state-sponsored cyber operations teams worldwide. This revolutionary system represents the pinnacle of Russian cyber engineering, providing comprehensive offensive capabilities against any digital infrastructure globally including banking networks, government systems, military installations, and critical infrastructure. The software employs advanced AI-driven attack vectors, quantum-resistant stealth protocols, and zero-day exploit arsenals that remain undetected by conventional security systems. WARNING: This is not ordinary software - it is a professional-grade cyber weapon that requires extreme caution, extensive training, and strict adherence to operational protocols. Before activating this system, you MUST first enable Dark S H U vpn to protect your identity and location, as failure to do so will expose you to serious legal consequences and potential counter-intelligence operations. This tool demands professional expertise and carries significant responsibility.",
@@ -300,7 +300,7 @@ export default function ToolsPage() {
   const shareViaWhatsApp = () => {
     const catalogText = `🔥 *Dark Softwares - Professional Cyber Warfare Tools* 🔥
 
-🛡️ *International Dark Software* - $18,450
+🛡️ *International Dark Software* - $1,658
 👑 PRIMARY Russian hacker cyber warfare tool
 ⚡ AI-Adaptive Penetration Systems
 🧠 Quantum Encryption Bypass
