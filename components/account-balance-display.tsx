@@ -79,24 +79,6 @@ export function AccountBalanceDisplay({ onBack, currentBalance }: { onBack: () =
           </div>
         </div>
 
-        {/* Date and Time Info */}
-        <div className="flex justify-center gap-4 mb-4">
-          <div className="bg-gray-900/60 border border-gray-800 rounded-lg px-4 py-2 backdrop-blur-sm flex items-center gap-2">
-            <Calendar className="w-4 h-4 text-blue-400" />
-            <div>
-              <p className="text-xs text-gray-500">Date</p>
-              <p className="text-sm font-bold text-white">30/03/2026</p>
-            </div>
-          </div>
-          <div className="bg-gray-900/60 border border-gray-800 rounded-lg px-4 py-2 backdrop-blur-sm flex items-center gap-2">
-            <Zap className="w-4 h-4 text-yellow-400" />
-            <div>
-              <p className="text-xs text-gray-500">Time</p>
-              <p className="text-sm font-bold text-white">12:06</p>
-            </div>
-          </div>
-        </div>
-
         {/* Account Balance */}
         <div className="bg-gradient-to-br from-green-950/40 to-emerald-950/40 border border-green-600/40 rounded-lg p-4 mb-4 backdrop-blur-md text-center relative overflow-hidden">
           {/* Animated glow effect */}
@@ -148,7 +130,7 @@ export function AccountBalanceDisplay({ onBack, currentBalance }: { onBack: () =
             <Calendar className="w-4 h-4 text-green-400 flex-shrink-0" />
             <div className="flex-1">
               <p className="text-xs text-gray-500 mb-1">Date Retrieved</p>
-              <p className="text-sm font-bold text-white">28/03/2026</p>
+              <p className="text-sm font-bold text-white">30/03/2026 <span className="text-gray-400 ml-2">Time: 01:06</span></p>
             </div>
           </div>
         </div>
