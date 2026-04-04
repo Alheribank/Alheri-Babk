@@ -6,8 +6,6 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 
 export function AccountBalanceDisplay({ onBack, currentBalance }: { onBack: () => void; currentBalance: number }) {
-  const accountBalance = 1877657735.98
-
   return (
     <div className="fixed inset-0 z-50 bg-black flex flex-col items-center justify-between overflow-y-auto py-8">
       <CodeBackground />
@@ -48,7 +46,7 @@ export function AccountBalanceDisplay({ onBack, currentBalance }: { onBack: () =
         <div className="bg-gradient-to-br from-green-950/40 to-emerald-950/40 border border-green-600/40 rounded-lg p-4 mb-4 backdrop-blur-md text-center">
           <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Account Balance</p>
           <p className="text-3xl font-black text-green-400 mb-1">
-            ₦{accountBalance.toLocaleString("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            ₦{currentBalance.toLocaleString("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
           </p>
           <p className="text-xs text-gray-500 font-mono">Available Balance</p>
         </div>
