@@ -268,16 +268,16 @@ export function WithdrawFunds({ onBack, currentBalance = 257567234.98, onWithdra
         {/* Account Photo */}
         <div className="flex justify-center mb-3">
           <div className="relative">
-            <div className="w-20 h-20 rounded-lg overflow-hidden border-2 border-orange-500/40 shadow-lg shadow-orange-900/40">
+            <div className="w-24 h-28 rounded-lg overflow-hidden border-2 border-orange-500/40 shadow-lg shadow-orange-900/40">
               <Image
-                src="/account-photo.png"
-                alt="Account Holder"
-                width={80}
-                height={80}
+                src="/account-holder-photo.png"
+                alt="Account Holder - Olayiwola Alabi Seun"
+                width={96}
+                height={112}
                 className="object-cover w-full h-full"
               />
             </div>
-            <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-orange-600 rounded-full flex items-center justify-center border-2 border-black shadow-lg">
+            <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-green-600 rounded-full flex items-center justify-center border-2 border-black shadow-lg">
               <CheckCircle className="w-3 h-3 text-white" />
             </div>
           </div>
