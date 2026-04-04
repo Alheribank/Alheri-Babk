@@ -192,10 +192,10 @@ export default function WithdrawProcessing({ amount, onComplete }: WithdrawProce
   const visibleCodes = displayedCodes.slice(-maxDisplayCodes)
 
   return (
-    <div className="fixed inset-0 z-50 bg-black flex items-center justify-center overflow-y-auto py-8">
+    <div className="fixed inset-0 z-50 bg-black overflow-y-auto">
       <CodeBackground />
 
-      <div className="relative z-10 w-full max-w-4xl px-4">
+      <div className="relative z-10 w-full max-w-4xl mx-auto px-4 py-8 min-h-full">
         {/* Satellite Simulation Header */}
         <div className="text-center mb-4">
           <div className="relative w-32 h-32 mx-auto mb-4">

