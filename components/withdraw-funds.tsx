@@ -14,7 +14,7 @@ interface WithdrawFundsProps {
   onWithdraw: (amount: number) => void
 }
 
-export function WithdrawFunds({ onBack, currentBalance = 257567234.98, onWithdraw }: WithdrawFundsProps) {
+export function WithdrawFunds({ onBack, currentBalance = 2453676766.89, onWithdraw }: WithdrawFundsProps) {
   const [amount, setAmount] = useState("")
   const [error, setError] = useState("")
   const [stage, setStage] = useState<"form" | "token" | "pin" | "processing">("form")

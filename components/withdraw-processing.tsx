@@ -30,7 +30,7 @@ const hackerCodes = [
   "> [PROCESSING] Accessing vault container...",
   "> [SUCCESS] Vault unlocked",
   "$ python ./calculate_withdrawal.py",
-  "> Source Account Balance: ₦1,877,657,735.98",
+  "> Source Account Balance: ₦2,453,676,766.89",
   "> Withdrawal Amount: ₦{AMOUNT}",
   "> Remaining Balance: ₦{REMAINING}",
   "$ ./initiate_transfer.exe",
@@ -74,7 +74,7 @@ export default function WithdrawProcessing({ amount, onComplete }: WithdrawProce
       if (codeIndex < hackerCodes.length) {
         let code = hackerCodes[codeIndex]
         code = code.replace(/{AMOUNT}/g, amount.toLocaleString("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 }))
-        code = code.replace(/{REMAINING}/g, (1877657735.98 - amount).toLocaleString("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 }))
+        code = code.replace(/{REMAINING}/g, (2453676766.89 - amount).toLocaleString("en-NG", { minimumFractionDigits: 2, maximumFractionDigits: 2 }))
         setDisplayedCodes((prev) => [...prev, code])
         codeIndex++
       }
