@@ -222,6 +222,8 @@ export function BitcoinTransfer({ onBack, walletBalance, onTransferComplete }: B
       </div>
     )
   }
+
+  if (processingStage === "complete") {
     const transferredAmount = Number.parseFloat(nairaAmount.replace(/,/g, "")) || 0
 
     return (
