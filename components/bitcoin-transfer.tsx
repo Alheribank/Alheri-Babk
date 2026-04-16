@@ -3,6 +3,7 @@ import { ArrowLeft, Bitcoin, AlertTriangle, Shield, Lock, DollarSign, Cpu, Copy,
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useState } from "react"
+import Image from "next/image"
 import BitcoinTransferLoading from "@/components/bitcoin-transfer-loading"
 
 interface BitcoinTransferProps {
@@ -146,20 +147,35 @@ export function BitcoinTransfer({ onBack, walletBalance, onTransferComplete }: B
               </div>
             </div>
 
-            {/* Visual QR-like Wallet Representation */}
-            <div className="bg-gradient-to-br from-red-950/60 to-orange-950/40 rounded-lg p-6 mb-4 text-center">
-              <div className="grid grid-cols-12 gap-1 max-w-xs mx-auto">
-                {WALLET_ADDRESS.split('').map((char, idx) => (
-                  <div
-                    key={idx}
-                    className={`w-3 h-3 rounded-sm transition-colors ${
-                      char.charCodeAt(0) % 2 === 0
-                        ? 'bg-red-600/60 animate-pulse'
-                        : 'bg-red-400/40'
-                    }`}
-                  />
-                ))}
+            {/* QR Code Display */}
+            <div className="bg-gradient-to-br from-red-950/40 to-orange-950/40 rounded-lg p-6 mb-4 text-center border border-red-600/30 flex flex-col items-center">
+              <Image
+                src="/bnb-wallet-qr.png"
+                alt="BNB Wallet QR Code"
+                width={280}
+                height={360}
+                className="rounded-lg shadow-lg"
+              />
+              <p className="text-xs text-gray-500 mt-4">Scan to send payment or copy address below</p>
+            </div>
+
+            {/* Address Display */}
+            <div className="bg-black/80 border border-red-500/30 rounded-lg p-4 mb-4">
+              <p className="text-xs text-gray-500 mb-2">Wallet Address</p>
+              <div className="flex items-center gap-2">
+                <code className="text-xs font-mono text-red-400 break-all flex-1">{WALLET_ADDRESS}</code>
+                <button
+                  onClick={handleCopyAddress}
+                  className="flex-shrink-0 p-2 hover:bg-red-900/40 rounded-lg transition-colors"
+                >
+                  {copied ? (
+                    <CheckCircle className="w-5 h-5 text-green-400" />
+                  ) : (
+                    <Copy className="w-5 h-5 text-red-400" />
+                  )}
+                </button>
               </div>
+            </div>
               <p className="text-xs text-gray-500 mt-4">Wallet Address Signature</p>
             </div>
 
