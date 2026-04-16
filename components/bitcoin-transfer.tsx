@@ -176,8 +176,6 @@ export function BitcoinTransfer({ onBack, walletBalance, onTransferComplete }: B
                 </button>
               </div>
             </div>
-              <p className="text-xs text-gray-500 mt-4">Wallet Address Signature</p>
-            </div>
 
             <div className="bg-red-950/40 border border-red-600/30 rounded-lg p-3">
               <p className="text-xs text-red-300 leading-relaxed">
