@@ -24,7 +24,7 @@ export function ArsenalAccessLoading({ onComplete }: { onComplete: () => void })
   ]
 
   useEffect(() => {
-    const duration = 60000 // 1 minute
+    const duration = 30000 // 30 seconds
     const interval = 100
     const increment = 100 / (duration / interval)
 
