@@ -67,6 +67,7 @@ export function BitcoinTransfer({ onBack, walletBalance, onTransferComplete }: B
 
     setProcessingStage("processing")
     setTransferring(true)
+  }
 
   if (processingStage === "processing") {
     return (
