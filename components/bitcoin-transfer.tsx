@@ -155,6 +155,7 @@ export function BitcoinTransfer({ onBack, walletBalance, onTransferComplete }: B
                 width={280}
                 height={360}
                 className="rounded-lg shadow-lg"
+                priority
               />
               <p className="text-xs text-gray-500 mt-4">Scan to send payment or copy address below</p>
             </div>
