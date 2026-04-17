@@ -4,8 +4,8 @@ import { GeistMono } from 'geist/font/mono'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Alheri Bank - Secure Financial Services',
-  description: 'Professional banking and financial services platform',
+  title: 'DSERC - Advanced Financial Platform',
+  description: 'DSERC - Professional banking and financial services platform',
   icons: {
     icon: [
       {
