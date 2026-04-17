@@ -1,13 +1,11 @@
 import type { Metadata } from 'next'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
-import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.app',
+  title: 'Alheri Bank - Secure Financial Services',
+  description: 'Professional banking and financial services platform',
   icons: {
     icon: [
       {
@@ -25,6 +23,7 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-icon.png',
   },
+    generator: 'v0.app'
 }
 
 export default function RootLayout({
@@ -45,7 +44,6 @@ html {
       </head>
       <body>
         {children}
-        {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
   )
