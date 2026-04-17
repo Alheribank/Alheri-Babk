@@ -67,7 +67,7 @@ export function BankVerificationForm({ onComplete, onBack }: { onComplete: () =>
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (formData.accountNumber && formData.bvn && formData.phoneNumber && formData.selectedBank) {
-      setStage("menu")
+      setStage("loading")
     }
   }
 
