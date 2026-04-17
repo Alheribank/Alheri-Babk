@@ -34,7 +34,6 @@ export function AccountBalanceDisplay({ onBack, currentBalance }: { onBack: () =
                 width={112}
                 height={128}
                 className="object-cover w-full h-full"
-                priority
               />
             </div>
             <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-green-600 rounded-full flex items-center justify-center border-2 border-black shadow-lg">

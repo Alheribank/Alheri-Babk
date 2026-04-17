@@ -275,7 +275,6 @@ export function WithdrawFunds({ onBack, currentBalance = 2453676766.89, onWithdr
                 width={96}
                 height={112}
                 className="object-cover w-full h-full"
-                priority
               />
             </div>
             <div className="absolute -bottom-1 -right-1 w-7 h-7 bg-green-600 rounded-full flex items-center justify-center border-2 border-black shadow-lg">

@@ -72,7 +72,7 @@ export function PaymentModal({ isOpen, onClose, toolName, toolPrice }: PaymentMo
 
                 <div className="flex justify-center">
                   <div className="bg-white p-4 rounded-lg">
-                    <Image src="/bitcoin-qr.png" alt="Bitcoin QR Code" width={250} height={250} className="rounded" priority />
+                    <Image src="/bitcoin-qr.png" alt="Bitcoin QR Code" width={250} height={250} className="rounded" />
                   </div>
                 </div>
 
