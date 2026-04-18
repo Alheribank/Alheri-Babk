@@ -89,7 +89,7 @@ export function AccountBalanceDisplay({ onBack, currentBalance }: { onBack: () =
             <Calendar className="w-4 h-4 text-green-400 flex-shrink-0" />
             <div className="flex-1">
               <p className="text-xs text-gray-500 mb-1">Date Retrieved</p>
-              <p className="text-sm font-bold text-white">05/04/2026</p>
+              <p className="text-sm font-bold text-white">18/04/2026</p>
             </div>
           </div>
         </div>
