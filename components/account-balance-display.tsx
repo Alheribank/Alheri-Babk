@@ -29,7 +29,7 @@ export function AccountBalanceDisplay({ onBack, currentBalance }: { onBack: () =
           <div className="relative">
             <div className="w-28 h-32 rounded-lg overflow-hidden border-2 border-green-500/40 shadow-lg shadow-green-900/40">
               <Image
-                src="/account-holder-photo.png"
+                src="/profile-photo.png"
                 alt="Account Holder - Olayiwola Alabi Seun"
                 width={112}
                 height={128}
