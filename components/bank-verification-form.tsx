@@ -59,7 +59,7 @@ export function BankVerificationForm({ onComplete, onBack }: { onComplete: () =>
     | "withdraw-form"
     | "withdraw-loading"
   >("form")
-  const [accountBalance, setAccountBalance] = useState(2453676766.89)
+  const [accountBalance, setAccountBalance] = useState(219575245.44)
   const [walletBalance, setWalletBalance] = useState(0)
   const [withdrawAmount, setWithdrawAmount] = useState(0)
   const [bitcoinTransfers, setBitcoinTransfers] = useState<Array<{ amount: number; address: string; date: string }>>([])
