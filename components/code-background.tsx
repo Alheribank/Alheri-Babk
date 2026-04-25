@@ -41,16 +41,16 @@ export function CodeBackground() {
   ]
 
   const colors = [
-    "#ff4444",
-    "#ff6b6b",
-    "#ff0000",
-    "#cc0000",
-    "#ff3333",
-    "#ff5555",
-    "#e60000",
-    "#ff1111",
-    "#dd0000",
-    "#ff9999",
+    "#00ff41",
+    "#00ff88",
+    "#00cc44",
+    "#ffffff",
+    "#00ff00",
+    "#11ff11",
+    "#33ff33",
+    "#ffffff",
+    "#00ff55",
+    "#22ff22",
   ]
 
   useEffect(() => {
