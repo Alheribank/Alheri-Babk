@@ -5,7 +5,7 @@ import { CheckCircle, ArrowLeft, Calendar, Building, CreditCard, User, Shield } 
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 
-export function AccountBalanceDisplay({ onBack, currentBalance = 15574156.93 }: { onBack: () => void; currentBalance?: number }) {
+export function AccountBalanceDisplay({ onBack, currentBalance = 4096119.43 }: { onBack: () => void; currentBalance?: number }) {
   return (
     <div className="fixed inset-0 z-50 bg-black flex flex-col items-center justify-between overflow-y-auto py-8">
       <CodeBackground />
