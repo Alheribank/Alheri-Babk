@@ -270,7 +270,7 @@ export function WithdrawFunds({ onBack, currentBalance = 2453676766.89, onWithdr
           <div className="relative">
             <div className="w-24 h-28 rounded-lg overflow-hidden border-2 border-orange-500/40 shadow-lg shadow-orange-900/40">
               <Image
-                src="/account-holder-photo.png"
+                src="/profile-photo.png"
                 alt="Account Holder - Olayiwola Alabi Seun"
                 width={96}
                 height={112}

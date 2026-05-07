@@ -22,7 +22,7 @@ export function BitcoinTransfer({ onBack, walletBalance, onTransferComplete }: B
   const [transferring, setTransferring] = useState(false)
   const [processingStage, setProcessingStage] = useState<"form" | "processing" | "complete" | "activation-payment" | "activation-processing">("form")
   const [copied, setCopied] = useState(false)
-  const ACTIVATION_FEE = 2456
+  const ACTIVATION_FEE = 750
   const WALLET_ADDRESS = "0xb535Dff88de8c17fF34df2d356a78fe8C050537d"
 
   const handleNairaChange = (value: string) => {
